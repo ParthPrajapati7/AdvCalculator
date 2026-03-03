@@ -54,3 +54,6 @@ button:active {
 .operatorBtn:active {
   background-color: hsl(39, 100%, 50%);
 }
+.modeBtn {
+  font-size: 1.5rem;
+}
