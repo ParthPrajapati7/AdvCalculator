@@ -4,36 +4,84 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
-      name="Graphing/Scientific Calculator"
-      content="Calculator with slightly more advanced functionality."
+      name="description"
+      content="Scientific calculator with basic and advanced modes."
     />
-    <title>Calculator</title>
+    <title>AdvCalculator</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="calc">
-      <input id="display" readonly />
-      <div id="keys">
-        <button onclick="addToDisplay('+')" class="operatorBtn">+</button>
-        <button onclick="addToDisplay('7')">7</button>
-        <button onclick="addToDisplay('8')">8</button>
-        <button onclick="addToDisplay('9')">9</button>
-        <button onclick="addToDisplay('-')" class="operatorBtn">-</button>
-        <button onclick="addToDisplay('4')">4</button>
-        <button onclick="addToDisplay('5')">5</button>
-        <button onclick="addToDisplay('6')">6</button>
-        <button onclick="addToDisplay('*')" class="operatorBtn">*</button>
-        <button onclick="addToDisplay('1')">1</button>
-        <button onclick="addToDisplay('2')">2</button>
-        <button onclick="addToDisplay('3')">3</button>
-        <button onclick="addToDisplay('/')" class="operatorBtn">/</button>
-        <button onclick="addToDisplay('0')">0</button>
-        <button onclick="addToDisplay('.')">.</button>
-        <button onclick="calculate()">=</button>
-        <button onclick="clearDisplay()" class="operatorBtn">C</button>
-        <button onclick="changeMode()" class="modeBtn">Change Mode</button>
+    <main id="calc" aria-label="Calculator">
+      <div class="display-wrap">
+        <input
+          id="display"
+          type="text"
+          inputmode="decimal"
+          readonly
+          autocomplete="off"
+          spellcheck="false"
+          aria-label="Expression and result"
+        />
+        <div id="mode-hint" class="mode-hint" aria-live="polite"></div>
       </div>
-    </div>
+
+      <div id="keys" class="keys">
+        <div id="scientific-keys" class="key-row scientific hidden" role="group" aria-label="Scientific functions">
+          <button type="button" class="fnBtn" data-append="sin(">sin</button>
+          <button type="button" class="fnBtn" data-append="cos(">cos</button>
+          <button type="button" class="fnBtn" data-append="tan(">tan</button>
+          <button type="button" class="fnBtn" data-append="asin(">asin</button>
+          <button type="button" class="fnBtn" data-append="acos(">acos</button>
+          <button type="button" class="fnBtn" data-append="atan(">atan</button>
+          <button type="button" class="fnBtn" data-append="sqrt(">√</button>
+          <button type="button" class="fnBtn" data-append="log(">log</button>
+          <button type="button" class="fnBtn" data-append="ln(">ln</button>
+          <button type="button" class="fnBtn" data-append="^">^</button>
+          <button type="button" class="fnBtn" data-append="pi">π</button>
+          <button type="button" class="fnBtn" data-append="e">e</button>
+        </div>
+
+        <div class="key-row key-row-5">
+          <button type="button" class="operatorBtn" data-action="clear">C</button>
+          <button type="button" class="operatorBtn" data-action="backspace">⌫</button>
+          <button type="button" data-append="(">(</button>
+          <button type="button" data-append=")">)</button>
+          <button type="button" class="operatorBtn" data-append="%">%</button>
+        </div>
+        <div class="key-row">
+          <button type="button" data-append="7">7</button>
+          <button type="button" data-append="8">8</button>
+          <button type="button" data-append="9">9</button>
+          <button type="button" class="operatorBtn" data-append="/">÷</button>
+        </div>
+        <div class="key-row">
+          <button type="button" data-append="4">4</button>
+          <button type="button" data-append="5">5</button>
+          <button type="button" data-append="6">6</button>
+          <button type="button" class="operatorBtn" data-append="*">×</button>
+        </div>
+        <div class="key-row">
+          <button type="button" data-append="1">1</button>
+          <button type="button" data-append="2">2</button>
+          <button type="button" data-append="3">3</button>
+          <button type="button" class="operatorBtn" data-append="-">−</button>
+        </div>
+        <div class="key-row">
+          <button type="button" data-append="0">0</button>
+          <button type="button" data-append=".">.</button>
+          <button type="button" class="equalsBtn" data-action="calculate">=</button>
+          <button type="button" class="operatorBtn" data-append="+">+</button>
+        </div>
+        <div class="key-row mode-row">
+          <button type="button" class="modeBtn" id="btn-mode" data-action="toggleMode">
+            Scientific mode
+          </button>
+          <button type="button" class="modeBtn deg-btn hidden" id="btn-deg" data-action="toggleDeg">
+            Rad
+          </button>
+        </div>
+      </div>
+    </main>
 
     <script src="index.js"></script>
   </body>

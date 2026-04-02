@@ -1,59 +1,158 @@
-#keys {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  padding: 25px;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
-#calc {
-  font-family: Arial, sans-serif;
-  background-color: hsl(0, 0%, 15%);
-  border-radius: 15px;
-  max-width: 500px;
-  overflow: hidden;
-}
-#display {
-  width: 100%;
-  padding: 20px;
-  font-size: 5rem;
-  text-align: left;
-  border: none;
-  background-color: hsl(0, 0%, 30%);
-  color: white;
-}
+
 body {
   margin: 0;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: hsl(0, 0%, 95%);
+  padding: 1rem;
+  font-family: system-ui, "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(160deg, hsl(220 18% 92%), hsl(220 12% 85%));
 }
-button {
-  width: 100px;
-  height: 100px;
-  border-radius: 25px;
+
+#calc {
+  width: 100%;
+  max-width: 420px;
+  background: hsl(0 0% 15%);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow:
+    0 12px 40px hsl(0 0% 0% / 0.25),
+    0 0 0 1px hsl(0 0% 100% / 0.06) inset;
+}
+
+.display-wrap {
+  position: relative;
+}
+
+#display {
+  width: 100%;
+  padding: 1.25rem 1rem;
+  font-size: clamp(1.75rem, 6vw, 2.75rem);
+  text-align: right;
   border: none;
-  background-color: gray;
-  color: white;
-  font-size: 3rem;
-  font-weight: bold;
+  background: hsl(0 0% 22%);
+  color: hsl(0 0% 98%);
+  font-variant-numeric: tabular-nums;
+}
+
+#display:focus {
+  outline: 2px solid hsl(39 100% 50% / 0.5);
+  outline-offset: -2px;
+}
+
+.mode-hint {
+  min-height: 1.25rem;
+  padding: 0.35rem 1rem 0.6rem;
+  font-size: 0.75rem;
+  color: hsl(0 0% 65%);
+  background: hsl(0 0% 18%);
+}
+
+.keys {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+}
+
+.key-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.key-row.scientific {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.key-row-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.mode-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mode-row .modeBtn#btn-mode {
+  flex: 1;
+  min-width: 0;
+}
+
+.mode-row .deg-btn {
+  flex: 0 0 auto;
+  min-width: 3.5rem;
+}
+
+.keys button {
+  min-height: 52px;
+  padding: 0.35rem 0.25rem;
+  border-radius: 12px;
+  border: none;
+  background: hsl(0 0% 38%);
+  color: hsl(0 0% 98%);
+  font-size: clamp(1.1rem, 4vw, 1.5rem);
+  font-weight: 600;
   cursor: pointer;
+  transition: background 0.12s ease;
 }
-button:hover {
-  background-color: hsl(0, 0%, 40%);
+
+.keys button:hover {
+  background: hsl(0 0% 46%);
 }
-button:active {
-  background-color: hsl(0, 0%, 50%);
+
+.keys button:active {
+  background: hsl(0 0% 52%);
 }
+
 .operatorBtn {
-  background-color: hsl(39, 100%, 50%);
+  background: hsl(39 100% 46%);
+  color: hsl(0 0% 12%);
 }
+
 .operatorBtn:hover {
-  background-color: hsl(39, 100%, 65%);
+  background: hsl(39 100% 56%);
 }
+
 .operatorBtn:active {
-  background-color: hsl(39, 100%, 50%);
+  background: hsl(39 100% 50%);
 }
+
+.equalsBtn {
+  background: hsl(152 45% 42%);
+  color: hsl(0 0% 98%);
+}
+
+.equalsBtn:hover {
+  background: hsl(152 45% 50%);
+}
+
+.equalsBtn:active {
+  background: hsl(152 45% 46%);
+}
+
+.fnBtn {
+  font-size: clamp(0.8rem, 3vw, 1rem);
+}
+
 .modeBtn {
-  font-size: 1.5rem;
+  font-size: clamp(0.8rem, 2.5vw, 0.95rem);
+  font-weight: 600;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (min-width: 380px) {
+  .keys button {
+    min-height: 58px;
+  }
 }
