@@ -1,10 +1,8 @@
 const display = document.getElementById("display");
 const scientificKeys = document.getElementById("scientific-keys");
 const modeHint = document.getElementById("mode-hint");
-const btnMode = document.getElementById("btn-mode");
 const btnDeg = document.getElementById("btn-deg");
 
-let scientificMode = false;
 /** When true, sin/cos/tan take degrees; inverse trig results shown in degrees. */
 let degreeMode = false;
 
@@ -27,25 +25,11 @@ for (let d = 0; d <= 9; d++) {
   KEY_MAP[String(d)] = String(d);
 }
 
-function setScientificMode(on) {
-  scientificMode = on;
-  scientificKeys.classList.toggle("hidden", !on);
-  btnDeg.classList.toggle("hidden", !on);
-  btnMode.textContent = on ? "Basic mode" : "Scientific mode";
-  modeHint.textContent = on
-    ? degreeMode
-      ? "Trig: degrees · Inv trig: result in degrees"
-      : "Trig & inv trig: radians"
-    : "";
-}
-
 function toggleDegLabel() {
   btnDeg.textContent = degreeMode ? "Deg" : "Rad";
-  if (scientificMode) {
-    modeHint.textContent = degreeMode
-      ? "Trig: degrees · Inv trig: result in degrees"
-      : "Trig & inv trig: radians";
-  }
+  modeHint.textContent = degreeMode
+    ? "Trig: degrees · Inv trig: result in degrees"
+    : "Trig & inv trig: radians";
 }
 
 function addToDisplay(input) {
@@ -288,7 +272,7 @@ function handleKeydown(e) {
   }
 }
 
-document.getElementById("keys").addEventListener("click", (e) => {
+document.getElementById("calc").addEventListener("click", (e) => {
   const btn = e.target.closest("button");
   if (!btn) return;
 
@@ -300,9 +284,7 @@ document.getElementById("keys").addEventListener("click", (e) => {
   if (action === "clear") clearDisplay();
   else if (action === "backspace") backspace();
   else if (action === "calculate") calculate();
-  else if (action === "toggleMode") {
-    setScientificMode(!scientificMode);
-  } else if (action === "toggleDeg") {
+  else if (action === "toggleDeg") {
     degreeMode = !degreeMode;
     toggleDegLabel();
   }
@@ -310,5 +292,5 @@ document.getElementById("keys").addEventListener("click", (e) => {
 
 document.addEventListener("keydown", handleKeydown);
 
-setScientificMode(false);
+// Always show all buttons; only toggle angle units.
 toggleDegLabel();
